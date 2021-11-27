@@ -1,5 +1,7 @@
 package lru_cache
 
+import "container/list"
+
 type LruCache interface {
 	Exists(key interface{}) bool
 
@@ -7,7 +9,9 @@ type LruCache interface {
 
 	Get(key interface{}) (value interface{}, ok bool)
 
-	Remove(key interface{}) (ok bool)
+	removeOldest()
+
+	remove(element *list.Element)
 
 	Clear()
 }
